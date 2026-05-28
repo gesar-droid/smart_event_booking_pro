@@ -1,0 +1,1 @@
+<?php require_once 'config/auth.php'; require_admin(); require_once 'config/db.php'; $id=$_GET['id']??0; $pdo->prepare('DELETE FROM events WHERE id=?')->execute([$id]); $pdo->prepare('INSERT INTO audit_logs(user_id,action,details) VALUES(?,?,?)')->execute([$_SESSION['user_id'],'Deleted event','Event ID '.$id]); header('Location: events.php'); ?>
